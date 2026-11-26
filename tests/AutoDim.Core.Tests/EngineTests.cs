@@ -256,17 +256,17 @@ public class EngineTests
         engine.UpdateScene([Mon1], [winA, winB], new IntPoint(100, 100), nowMs: 0, DefaultCfg);
         Assert.Contains(engine.ComputeDrawRectsForMonitor("DISPLAY1", 20_500), r => r.Bounds == winB.Bounds && r.Alpha > 0.7f);
 
-        // Mouse enters winB at t=25_000 -> still dimmed at t=25_200 (< 350ms)
+        // Mouse enters winB at t=25_000 -> still dimmed at t=25_100 (< 150ms)
         engine.UpdateScene([Mon1], [winA, winB], new IntPoint(1000, 100), nowMs: 25_000, DefaultCfg);
-        Assert.Equal(25_350, engine.NextDeadlineMs(25_000));
-        Assert.Contains(engine.ComputeDrawRectsForMonitor("DISPLAY1", 25_200), r => r.Bounds == winB.Bounds && r.Alpha > 0.7f);
+        Assert.Equal(25_150, engine.NextDeadlineMs(25_000));
+        Assert.Contains(engine.ComputeDrawRectsForMonitor("DISPLAY1", 25_100), r => r.Bounds == winB.Bounds && r.Alpha > 0.7f);
 
-        // Mouse leaves winB before 350ms (t=25_250) -> stays dimmed
-        engine.UpdateScene([Mon1], [winA, winB], new IntPoint(100, 100), nowMs: 25_250, DefaultCfg);
+        // Mouse leaves winB before 150ms (t=25_120) -> stays dimmed
+        engine.UpdateScene([Mon1], [winA, winB], new IntPoint(100, 100), nowMs: 25_120, DefaultCfg);
         Assert.Contains(engine.ComputeDrawRectsForMonitor("DISPLAY1", 26_000), r => r.Bounds == winB.Bounds && r.Alpha > 0.7f);
 
-        // Sustained hover at t=30_000 -> brightens after 350ms + 100ms FadeIn
+        // Sustained hover at t=30_000 -> brightens after 150ms + 100ms FadeIn
         engine.UpdateScene([Mon1], [winA, winB], new IntPoint(1000, 100), nowMs: 30_000, DefaultCfg);
-        Assert.DoesNotContain(engine.ComputeDrawRectsForMonitor("DISPLAY1", 30_500), r => r.Bounds.Intersects(winB.Bounds));
+        Assert.DoesNotContain(engine.ComputeDrawRectsForMonitor("DISPLAY1", 30_300), r => r.Bounds.Intersects(winB.Bounds));
     }
 }

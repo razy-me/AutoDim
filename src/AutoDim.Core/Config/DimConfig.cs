@@ -16,7 +16,7 @@ public sealed record DimConfig : IEquatable<DimConfig>
     public double TaskbarOpacity { get; init; } = 0.85;
     public double ZoneOpacity { get; init; } = 0.85;
     public double DesktopOpacity { get; init; } = 0.85;
-    public int HoverEnterDelayMs { get; init; } = 350;
+    public int HoverEnterDelayMs { get; init; } = 150;
     public int HoverExitDelayMs { get; init; } = 10_000;
     public int UnfocusDelayMs { get; init; } = 20_000;
     public int FadeOutMs { get; init; } = 450;
