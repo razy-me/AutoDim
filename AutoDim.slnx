@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AutoDim.App/AutoDim.App.csproj" />
+    <Project Path="src/AutoDim.Core/AutoDim.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AutoDim.Core.Tests/AutoDim.Core.Tests.csproj" />
+  </Folder>
+</Solution>
